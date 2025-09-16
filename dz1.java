@@ -54,12 +54,12 @@ class Student {
     }
 
     // Сравнение студентов по фамилии
-    public int compare(Student other) {
+    public boolean compare(Student other) {
         return this.lastName.compareTo(other.lastName);
     }
 
     // Сравнение с произвольной фамилией (строкой)
-    public int compare(String lastName) {
+    public boolean compare(String lastName) {
         return this.lastName.compareTo(lastName);
     }
 }
