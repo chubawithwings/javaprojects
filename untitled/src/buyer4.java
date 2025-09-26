@@ -31,7 +31,6 @@ class Buyer implements BuyerInterface {
         this.bankAccount = bankAccount;
     }
 
-    // Реализация методов интерфейса
     public String getFullName() {
         return surname + " " + name + " " + patronymic;
     }
