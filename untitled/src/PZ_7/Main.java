@@ -60,7 +60,6 @@ public class Main {
     public static void testIntegerStack() {
         MyStack<Integer> intStack = new MyStack<>(3);
 
-        // Добавляем элементы
         intStack.push(10);
         intStack.push(20);
         intStack.push(30);
@@ -68,7 +67,6 @@ public class Main {
         System.out.println("Верхний элемент: " + intStack.peek());
         System.out.println("Размер стека: " + intStack.size());
 
-        // Извлекаем элементы
         while (intStack.peek() != null) {
             System.out.println("Извлечен: " + intStack.pop());
         }
@@ -77,7 +75,6 @@ public class Main {
     public static void testStringStack() {
         MyStack<String> stringStack = new MyStack<>(3);
 
-        // Добавляем элементы
         stringStack.push("Hello");
         stringStack.push("World");
         stringStack.push("Java");
@@ -85,7 +82,6 @@ public class Main {
         System.out.println("Верхний элемент: " + stringStack.peek());
         System.out.println("Размер стека: " + stringStack.size());
 
-        // Извлекаем элементы
         while (stringStack.peek() != null) {
             System.out.println("Извлечен: " + stringStack.pop());
         }
