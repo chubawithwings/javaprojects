@@ -1,0 +1,92 @@
+// Практическая работа №12
+// Тема: Использование поведенческих шаблонов проектирования (Observer)
+// Вариант 2: Система уведомлений о погоде
+
+import java.util.*;
+
+// Интерфейс наблюдателя (подписчика)
+interface Observer {
+    void update(String weather);
+}
+
+// Интерфейс издателя (того, за кем наблюдают)
+interface Subject {
+    void addObserver(Observer o);
+    void removeObserver(Observer o);
+    void notifyObservers();
+}
+
+// Класс, представляющий "Погоду" (издатель)
+class WeatherStation implements Subject {
+    private List<Observer> observers = new ArrayList<>();
+    private String weather;
+
+    // Добавление подписчика
+    @Override
+    public void addObserver(Observer o) {
+        observers.add(o);
+    }
+
+    // Удаление подписчика
+    @Override
+    public void removeObserver(Observer o) {
+        observers.remove(o);
+    }
+
+    // Уведомление всех подписчиков
+    @Override
+    public void notifyObservers() {
+        for (Observer o : observers) {
+            o.update(weather);
+        }
+    }
+
+    // Изменение погоды
+    public void setWeather(String weather) {
+        this.weather = weather;
+        System.out.println("\nПогода изменилась на: " + weather);
+        notifyObservers();
+    }
+}
+
+// Класс подписчика — пользователь
+class User implements Observer {
+    private String name;
+
+    public User(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public void update(String weather) {
+        System.out.println(name + " получил уведомление: сейчас " + weather);
+    }
+}
+
+// Главный класс программы
+public class WeatherNotification {
+    public static void main(String[] args) {
+        // Создаём "погодную станцию"
+        WeatherStation weatherStation = new WeatherStation();
+
+        // Создаём пользователей
+        User user1 = new User("Алина");
+        User user2 = new User("Максим");
+        User user3 = new User("Оля");
+
+        // Подписываем пользователей на уведомления
+        weatherStation.addObserver(user1);
+        weatherStation.addObserver(user2);
+        weatherStation.addObserver(user3);
+
+        // Меняем погоду
+        weatherStation.setWeather("солнечно ☀️");
+        weatherStation.setWeather("дождливо 🌧️");
+
+        // Один пользователь отписывается
+        weatherStation.removeObserver(user2);
+
+        // Ещё одно изменение погоды
+        weatherStation.setWeather("снежно ❄️");
+    }
+}
